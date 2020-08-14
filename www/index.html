@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content=" media-src *">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+    <meta name="color-scheme" content="light dark">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/sweetalert.css">
+    <link rel="stylesheet" href="css/font.css">
+    <link rel="stylesheet" href="css/index.css">
+    <title>login</title>
+</head>
+
+<body>
+    <!--Loading -->
+    <div id="loading">
+        <div id="content_loading">
+            <center>
+                &nbsp;&nbsp;&nbsp;
+                <img src="img/logo.png" width="60" height="60">
+                <br>
+                <img src="img/loading.gif" width="60" height="60">
+                <br>
+                <label class="font-weight-bold" style="color:#2E86C1;">Espere...</label>
+            </center>
+        </div>
+    </div>
+    <!--End Loading-->
+    <div
+        style="width:100%;position: absolute;left: 50%;top: 50%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%);">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 p-3">
+                    <center><img src="img/logo.png" width="120" height="120"></center>
+                </div>
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header font-weight-bold">Incio de sesión</div>
+                        <div class="card-body">
+                            <form id="form_login">
+                                <div class="form-group row">
+                                    <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail</label>
+                                    <div class="col-md-6">
+                                        <input id="email" type="text" class="form-control" name="email" autofocus>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="password"
+                                        class="col-md-4 col-form-label text-md-right">Contraseña</label>
+                                    <div class="col-md-6">
+                                        <input id="password" type="password" class="form-control" name="password">
+                                    </div>
+                                </div>
+                                <div class="form-group row mb-0">
+                                    <div class="col-md-6 offset-md-4">
+                                        <button type="submit" class="btn btn-primary btn-block">
+                                            Acceder
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="cordova.js"></script>
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/sweetalert.js"></script>
+    <script src="js/index.js"></script>
+    <script>
+        $(document).ready(function () {
+            loadingOn()
+            if (document.title == "login") {
+                if (window.localStorage.getItem("api_token") != null) {
+                    window.location = "index_service.html";
+                } else { loadingOff(); }
+            } else { loadingOff(); }
+            $("#form_login").submit(function (e) {
+                e.preventDefault();
+                var email = $("#email");
+                var password = $("#password");
+                if (email.val().length > 0 && password.val().length > 0) {
+                    var data = $("#form_login").serialize();
+                    loadingOn();
+                    $.ajax({
+                        url: ruta + 'login',
+                        data: data,
+                        success: function (data) {
+                            console.log(data);
+                            if (data != 0) {
+                                window.localStorage.setItem('user_id', data.id);
+                                window.localStorage.setItem('name', data.name);
+                                window.localStorage.setItem('last_name1', data.last_name1);
+                                window.localStorage.setItem('last_name2', data.last_name2);
+                                window.localStorage.setItem('api_token', data.api_token);
+                                toastSuccess('Bienvenid@ '+window.localStorage.getItem('name'));
+                                window.location = 'index_service.html';
+
+                            } else {
+                                loadingOff();
+                                swal('Error', 'Parece que los datos son incorrectos por favor verifíquelos e intente de nuevo.', 'error');
+                                password.val('');
+                            }
+                        },
+                        error: function (e) {
+                            console.log("error: " + JSON.stringify(e));
+                            loadingOff();
+                            swal('Error', 'Error al obtener los datos por favor intente de nuevo.', 'error');
+                        }
+                    });
+
+                }else{
+                    toastError("Todos los datos son requeridos");
+                    console.log("Todos los datos son requeridos");
+                }
+
+            });
+        });
+    </script>
+</body>
+
+</html>

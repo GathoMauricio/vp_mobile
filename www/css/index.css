@@ -1,0 +1,44 @@
+html,body {
+    margin: 0;
+    padding: 0;
+}
+#loading{
+    display: none;
+    position:fixed;
+    width:100%;
+    height: 100vh;
+    background-color: black;
+    z-index: 999;
+}
+#content_loading {
+    width: 50%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+}
+#content {
+	padding: 0;
+	margin: 0;
+}
+
+#flexBox {
+	background-color: #3498DB;
+	position: relative;
+	top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100vh;
+}
+.botonera_firma{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color:white;
+    opacity: 0.5;
+}
