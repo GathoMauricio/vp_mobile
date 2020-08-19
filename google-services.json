@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "660098793412",
+    "firebase_url": "https://vp-mobile-fdeb1.firebaseio.com",
+    "project_id": "vp-mobile-fdeb1",
+    "storage_bucket": "vp-mobile-fdeb1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:660098793412:android:b748676c68074ce9eeee91",
+        "android_client_info": {
+          "package_name": "com.victoriaproject.vpmobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "660098793412-bk44t0tc9gg2lmjsa84ndbs8er26eur0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADC33NhsMsdh-QHLH5zzFrPzGIDG6aJXk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "660098793412-bk44t0tc9gg2lmjsa84ndbs8er26eur0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
