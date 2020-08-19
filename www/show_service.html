@@ -30,24 +30,25 @@
         </div>
     </div>
     <!--End Loading-->
-     <!--NAVBAR-->
-     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-top">
+    <!--NAVBAR-->
+    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-top">
         <div class="container">
             <a class="navbar-brand" href="index_service.html">
-                <label for=""><span style="color:orange;"><i>V</i></span><span style="color:green;"><i>P</i></span></label> Mobile
+                <label for=""><span style="color:orange;"><i>V</i></span><span
+                        style="color:green;"><i>P</i></span></label> Mobile
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
             </button>
-    
+
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-    
+
                 </ul>
-    
+
                 <ul class="navbar-nav ml-auto">
-                 <!--   
+                    <!--   
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link" href="#" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -162,14 +163,14 @@
                             <!--Se carga el nombre del usuario logeado-->
                             <span class="caret"></span>
                         </a>
-                        
+
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <span class="dropdown-item"  onclick="cerrarSesion();">
+                            <span class="dropdown-item" onclick="cerrarSesion();">
                                 Cerrar sesión
                             </span>
                         </div>
                     </li>
-    
+
                 </ul>
             </div>
         </div>
@@ -182,13 +183,16 @@
                 <table style="width:100%;">
                     <tr>
                         <td width="33%">
-                            <button class="btn btn-secondary btn-block" style="color:white;"><span class="icon-share"></span> Status servicio</button>
+                            <button class="btn btn-secondary btn-block" style="color:white;"><span
+                                    class="icon-share"></span> Status servicio</button>
                         </td>
                         <td width="33%">
-                            <button class="btn btn-warning btn-block" style="color:white;"><span class="icon-clock"></span> Reagendar servicio</button>
+                            <button class="btn btn-warning btn-block" style="color:white;"><span
+                                    class="icon-clock"></span> Reagendar servicio</button>
                         </td>
                         <td width="33%">
-                            <button class="btn btn-danger btn-block" style="color:white;"><span class="icon-bin"></span> Cancelar servicio</button>
+                            <button class="btn btn-danger btn-block" style="color:white;"><span class="icon-bin"></span>
+                                Cancelar servicio</button>
                         </td>
                     </tr>
                 </table>
@@ -202,11 +206,14 @@
                 <br>
                 <label class="font-weight-bold">Tipo de servicio: </label><br><span id="span_service_type">-</span>
                 <br>
-                <label class="font-weight-bold">E-Mail de contacto: </label><br><span id="span_final_user_email">-</span>
+                <label class="font-weight-bold">E-Mail de contacto: </label><br><span
+                    id="span_final_user_email">-</span>
                 <br>
-                <label class="font-weight-bold">Teléfono de contacto: </label><br><span id="span_final_user_phone">-</span>
+                <label class="font-weight-bold">Teléfono de contacto: </label><br><span
+                    id="span_final_user_phone">-</span>
                 <br>
-                <label class="font-weight-bold">Dirección de contacto: </label><br><span id="span_final_user_address">-</span>
+                <label class="font-weight-bold">Dirección de contacto: </label><br><span
+                    id="span_final_user_address">-</span>
                 <br>
                 <label class="font-weight-bold">Mesa de ayuda: </label><br><span id="span_manager_name">-</span>
                 <br>
@@ -219,6 +226,9 @@
                 <label class="font-weight-bold">Solución: </label><br><span id="span_solution">-</span>
                 <br>
                 <label class="font-weight-bold">Observaciones: </label><br><span id="span_observations">-</span>
+                <br>
+                <label class="font-weight-bold">Firma: </label><br>
+                <div id="div_firma_final_user" style="width:100%;"></div>
                 <br><br><br><br>
             </div>
         </div>
@@ -228,11 +238,16 @@
     <div class="footer">
         <table style="width:100%;">
             <tr>
-                <td onclick="toastSuccess('Abrir comentarios')" width="20%" ><span class="icon icon-bubble" style="font-size:22px;"></span></td>
-                <td onclick="toastSuccess('Tomar foto de evidencia')" width="20%" ><span class="icon icon-camera" style="font-size:22px;"></span></td>
-                <td onclick="toastSuccess('Abrir galeria para subir evidencia')" width="20%" ><span class="icon icon-upload" style="font-size:22px;"></span></td>
-                <td onclick="toastSuccess('Ver fotos de evidencia subidas')" width="20%" ><span class="icon icon-image" style="font-size:22px;"></span></td>
-                <td onclick="firmar();" width="20%" ><span id="span_final_user_firm" class="icon icon-pen" style="font-size:22px;"></span></td>
+                <td onclick="toastSuccess('Abrir comentarios')" width="20%"><span class="icon icon-bubble"
+                        style="font-size:22px;"></span></td>
+                <td onclick="toastSuccess('Tomar foto de evidencia')" width="20%"><span class="icon icon-camera"
+                        style="font-size:22px;"></span></td>
+                <td onclick="toastSuccess('Abrir galeria para subir evidencia')" width="20%"><span
+                        class="icon icon-upload" style="font-size:22px;"></span></td>
+                <td onclick="toastSuccess('Ver fotos de evidencia subidas')" width="20%"><span class="icon icon-image"
+                        style="font-size:22px;"></span></td>
+                <td onclick="firmar();" width="20%"><span id="span_final_user_firm" class="icon icon-pen"
+                        style="font-size:22px;"></span></td>
             </tr>
         </table>
     </div>
@@ -248,72 +263,96 @@
         $(document).ready(function () {
             loadingOn();
             $.ajax({
-            url: ruta + 'show_service',
-            data: 
-            {
-                api_token : window.localStorage.getItem('api_token'),
-                service_id : window.localStorage.getItem('service_id')
-            },
-            success: function (data) {
-                //console.log(JSON.stringify(data));
-                $("#span_status_service").text(JSON.stringify(data.status.status_service));
-                $("#span_customer_name").text(data.customer.name);
-                $("#span_final_user").text(data.usuario__final.name+' '+data.usuario__final.last_name1+' '+data.usuario__final.last_name2);
-                $("#span_service_type").text(data.service_type.service_type);
-                $("#span_final_user_email").text(data.usuario__final.email);
-                $("#span_final_user_phone").text(data.usuario__final.phone);
-                $("#span_final_user_address").text(data.usuario__final.calle_numero+' '+data.usuario__final.cp+' '+data.usuario__final.asentamiento+' '+data.usuario__final.ciudad+' '+data.usuario__final.municipio+' '+data.usuario__final.estado);
-                $("#span_manager_name").text(data.manager.name+' '+data.manager.last_name1+' '+data.manager.last_name2);
-                $("#span_technical_name").text(data.technical.name+' '+data.technical.last_name1+' '+data.technical.last_name2);
-                $("#span_schedule").text(data.schedule+' Hrs.');
-                $("#span_description").text(data.description);
-                $("#span_solution").text(data.solution);
-                $("#span_observations").text(data.observations);
-                firm = data.firm;
-                if(data.firm == null)
+                url: ruta + 'show_service',
+                data:
                 {
-                    $("#span_final_user_firm").css('color','white');
-                }else{
-                    $("#span_final_user_firm").css('color','yellow');
+                    api_token: window.localStorage.getItem('api_token'),
+                    service_id: window.localStorage.getItem('service_id')
+                },
+                success: function (data) {
+                    //console.log(JSON.stringify(data));
+                    if (parseInt(data.status_service_id) >= 6) {
+                        $("#span_status_service").text('Finalizado');
+                    } else {
+                        $("#span_status_service").text(data.status.status_service);
+                    }
+                    $("#span_customer_name").text(data.customer.name);
+                    $("#span_final_user").text(data.usuario__final.name + ' ' + data.usuario__final.last_name1 + ' ' + data.usuario__final.last_name2);
+                    $("#span_service_type").text(data.service_type.service_type);
+                    $("#span_final_user_email").text(data.usuario__final.email);
+                    $("#span_final_user_phone").text(data.usuario__final.phone);
+                    $("#span_final_user_address").text(data.usuario__final.calle_numero + ' ' + data.usuario__final.cp + ' ' + data.usuario__final.asentamiento + ' ' + data.usuario__final.ciudad + ' ' + data.usuario__final.municipio + ' ' + data.usuario__final.estado);
+                    $("#span_manager_name").text(data.manager.name + ' ' + data.manager.last_name1 + ' ' + data.manager.last_name2);
+                    $("#span_technical_name").text(data.technical.name + ' ' + data.technical.last_name1 + ' ' + data.technical.last_name2);
+                    $("#span_schedule").text(data.schedule + ' Hrs.');
+                    $("#span_description").text(data.description);
+                    $("#span_solution").text(data.solution);
+                    $("#span_observations").text(data.observations);
+                    firm = data.firm;
+                    if (data.firm == null) {
+                        $("#span_final_user_firm").css('color', 'white');
+                    } else {
+                        $("#span_final_user_firm").css('color', 'yellow');
+                    }
+                    //contador evidencias
+                    //contador comentarios
+                    loadingOff();
+                },
+                error: function (e) {
+                    console.log(JSON.stringify(e));
+                    loadingOff();
+                    toastError("Error al obtener los datos");
                 }
-                //contador evidencias
-                //contador comentarios
-                loadingOff();
-            },
-            error: function (e) {
-                console.log(JSON.stringify(e));
-                loadingOff();
-                toastError("Error al obtener los datos");
-            }
+            });
+
+
+            $.ajax({
+                url: ruta + 'show_firma',
+                data:
+                {
+                    api_token: window.localStorage.getItem('api_token'),
+                    service_id: window.localStorage.getItem('service_id')
+                },
+                success: function (data) {
+                    console.log(JSON.stringify(data));
+                    if(data.length > 0) {
+                        $("#div_firma_final_user").html("<img src='"+data+"' width='100%' height='200'>");
+                    }else{
+                        $("#div_firma_final_user").html("<center>No disponible aún.</center>");
+                    }
+                },
+                error: function (e) {
+                    console.log(e.responseText);
+                    $("body").html(e.responseText);
+                    toastError("Error al obtener los datos");
+                }
+            });
+
         });
-            
-        });
-        function firmar()
-        {
-            if(firm == null)
-            {
+        function firmar() {
+            if (firm == null) {
                 window.location = 'create_firma.html';
-            }else{
+            } else {
 
                 $.ajax({
                     url: ruta + 'show_firma',
-                    data: 
+                    data:
                     {
-                        api_token : window.localStorage.getItem('api_token'),
-                        service_id : window.localStorage.getItem('service_id')
+                        api_token: window.localStorage.getItem('api_token'),
+                        service_id: window.localStorage.getItem('service_id')
                     },
                     success: function (data) {
                         console.log(JSON.stringify(data));
                         swal({
                             html: true,
                             title: 'Aviso',
-                            text: 'Ya existe una firma guardada<br><img src="'+data+'" width="60"><br>¿Desea sobreescribirla?',
-                            confirmButtonText:'Si',
+                            text: 'Ya existe una firma guardada<br><img src="' + data + '" width="60"><br>¿Desea sobreescribirla?',
+                            confirmButtonText: 'Si',
                             showCancelButton: true,
                             cancelButtonText: 'No'
-                            }, function () {
-                                window.location = 'create_firma.html';
-                            });
+                        }, function () {
+                            window.location = 'create_firma.html';
+                        });
                         loadingOff();
                     },
                     error: function (e) {
@@ -326,20 +365,22 @@
         }
     </script>
     <style>
-        .footer{
+        .footer {
             position: fixed;
             left: 0;
             bottom: 0;
             width: 100%;
         }
-        .footer table tr td{
+
+        .footer table tr td {
             text-align: center;
-            padding:20px;
-            background-color:black;
-            color:white;
+            padding: 20px;
+            background-color: black;
+            color: white;
             border-left: solid 1px white;
             border-right: solid 1px white;
         }
     </style>
 </body>
+
 </html>

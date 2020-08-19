@@ -224,10 +224,11 @@
                         //console.log(JSON.stringify(item));
                         switch(item.status.status_service)
                         {
-                            case 'Pendiente': var bg = 'secondary'; break;
-                            case 'En proceso': var bg = 'primary'; break;
-                            case 'Finalizado': var bg = 'success'; break;
-                            case 'Cancelado': var bg = 'danger'; break;
+                            case 'Pendiente': bg = 'secondary'; break;
+                            case 'En proceso': bg = 'primary'; break;
+                            case 'Finalizado': bg = 'success'; break;
+                            case 'Cancelado': bg = 'danger'; break;
+                            default: bg = 'success'; break;
                         }
                         html += 
                         '<div class="card">' +
