@@ -1,6 +1,6 @@
-//var ruta = "http://c0af6f76c7eb.ngrok.io/api/";
+var ruta = "http://ca41e2dbd8ca.ngrok.io/api/";
 //var ruta = "http://localhost/vp/public/api/";
-var ruta = "http://victoriapro.mx/api/";
+//var ruta = "http://victoriapro.mx/api/";
 $(document).ready(function(){
 
     if(document.title != 'login')
@@ -19,6 +19,7 @@ $(document).ready(function(){
                 console.log(JSON.stringify(e));
             }
         });
+        
     }
 });
 document.addEventListener("deviceready", onDeviceReady, false);
@@ -30,7 +31,56 @@ function onDeviceReady() {
         {
             window.location = "index_service.html";
         }else{ loadingOff(); }
-    }else{ loadingOff(); }
+    }else{ 
+        FirebasePlugin.getToken(function(fcmToken) {
+            console.log(fcmToken);
+            $.ajax({
+                type:'POST',
+                url: ruta + 'update_fcm_token',
+                data: 
+                {
+                    api_token : window.localStorage.getItem('api_token'),
+                    fcm_token : fcmToken
+                },
+                success: function (data) {
+                    console.log(JSON.stringify(data));
+                    
+                },
+                error: function (e) {
+                    console.log(JSON.stringify(e));
+                }
+            });
+        }, function(error) {
+            console.error(error);
+        });
+        FirebasePlugin.onMessageReceived(function(message) {
+            console.log(JSON.stringify(message));
+            if(message.messageType === "notification"){
+                if(message.tap){
+                    //Background
+                    window.localStorage.setItem("service_id", message.service_id);
+                    window.location = 'show_service.html';
+                }else{
+                    //Foreground
+                    swal({
+                        html: true,
+                        title: message.title,
+                        text: message.body,
+                        confirmButtonText: 'Abrir',
+                        showCancelButton: true,
+                        cancelButtonText: 'Cancelar'
+                    }, function () {
+                        window.localStorage.setItem("service_id", message.service_id);
+                        window.location = 'show_service.html';
+                    });
+                }
+            }
+            
+        }, function(error) {
+            console.error(error);
+        });
+        loadingOff();
+    }
 }
 function loadingOn()
 {
