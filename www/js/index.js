@@ -1,6 +1,6 @@
-var ruta = "http://ca41e2dbd8ca.ngrok.io/api/";
+//var ruta = "http://ca41e2dbd8ca.ngrok.io/api/";
 //var ruta = "http://localhost/vp/public/api/";
-//var ruta = "http://victoriapro.mx/api/";
+var ruta = "http://victoriapro.mx/api/";
 $(document).ready(function(){
 
     if(document.title != 'login')
@@ -33,7 +33,7 @@ function onDeviceReady() {
         }else{ loadingOff(); }
     }else{ 
         FirebasePlugin.getToken(function(fcmToken) {
-            console.log(fcmToken);
+            //console.log(fcmToken);
             $.ajax({
                 type:'POST',
                 url: ruta + 'update_fcm_token',
@@ -43,18 +43,18 @@ function onDeviceReady() {
                     fcm_token : fcmToken
                 },
                 success: function (data) {
-                    console.log(JSON.stringify(data));
+                    //console.log(JSON.stringify(data));
                     
                 },
                 error: function (e) {
-                    console.log(JSON.stringify(e));
+                    //console.log(JSON.stringify(e));
                 }
             });
         }, function(error) {
-            console.error(error);
+            //console.error(error);
         });
         FirebasePlugin.onMessageReceived(function(message) {
-            console.log(JSON.stringify(message));
+            //console.log(JSON.stringify(message));
             if(message.messageType === "notification"){
                 if(message.tap){
                     //Background

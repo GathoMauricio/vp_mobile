@@ -29,6 +29,13 @@
       "ANDROID_FIREBASE_CRASHLYTICS_NDK_VERSION": "17.0.1",
       "ANDROID_GSON_VERSION": "2.8.6",
       "PACKAGE_NAME": "com.victoriaproject.vpmobile"
+    },
+    "cordova-plugin-camera": {
+      "ANDROID_SUPPORT_V4_VERSION": "27.+",
+      "PACKAGE_NAME": "com.victoriaproject.vpmobile"
+    },
+    "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "com.victoriaproject.vpmobile"
     }
   },
   "dependent_plugins": {
@@ -36,6 +43,9 @@
       "PACKAGE_NAME": "com.victoriaproject.vpmobile"
     },
     "cordova-plugin-androidx-adapter": {
+      "PACKAGE_NAME": "com.victoriaproject.vpmobile"
+    },
+    "cordova-plugin-file": {
       "PACKAGE_NAME": "com.victoriaproject.vpmobile"
     }
   }

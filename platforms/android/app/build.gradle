@@ -362,6 +362,7 @@ dependencies {
     implementation "com.google.firebase:firebase-crashlytics:17.0.1"
     implementation "com.google.firebase:firebase-crashlytics-ndk:17.0.1"
     implementation "com.google.code.gson:gson:2.8.6"
+    implementation "androidx.legacy:legacy-support-v4:1.0.0"
     // SUB-PROJECT DEPENDENCIES END
 }
 
