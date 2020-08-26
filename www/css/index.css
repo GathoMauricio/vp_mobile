@@ -42,3 +42,9 @@ html,body {
     background-color:white;
     opacity: 0.5;
 }
+.comment-item{
+    padding: 10px;
+    background-color:#5DADE2;
+    color:white;
+    border-radius:4px;
+}

@@ -238,15 +238,17 @@
     <div class="footer">
         <table style="width:100%;">
             <tr>
-                <td onclick="toastSuccess('Abrir comentarios')" width="20%"><span class="icon icon-bubble"
+                <td onclick="abrirMensajes()" width="25%"><span class="icon icon-bubble"
                         style="font-size:22px;"></span></td>
-                <td onclick="abrirCamara()" width="20%"><span class="icon icon-camera" style="font-size:22px;"></span>
+                <td onclick="abrirCamara()" width="25%"><span class="icon icon-camera" style="font-size:22px;"></span>
                 </td>
+                <!--
                 <td onclick="abrirGaleria();" width="20%"><span class="icon icon-upload" style="font-size:22px;"></span>
                 </td>
-                <td onclick="toastSuccess('Ver fotos de evidencia subidas')" width="20%"><span class="icon icon-image"
+                -->
+                <td onclick="verEvidencias()" width="25%"><span class="icon icon-image"
                         style="font-size:22px;"></span></td>
-                <td onclick="firmar();" width="20%"><span id="span_final_user_firm" class="icon icon-pen"
+                <td onclick="firmar();" width="25%"><span id="span_final_user_firm" class="icon icon-pen"
                         style="font-size:22px;"></span></td>
             </tr>
         </table>
@@ -314,8 +316,8 @@
                     service_id: window.localStorage.getItem('service_id')
                 },
                 success: function (data) {
-                    //console.log(JSON.stringify(data));
-                    if (data.length > 0) {
+                    //console.log(JSON.stringify(data.slice(-1)));
+                    if (data.slice(-1) != '/') {
                         $("#div_firma_final_user").html("<img src='" + data + "' width='100%' height='200'>");
                     } else {
                         $("#div_firma_final_user").html("<center>No disponible aún.</center>");
@@ -329,6 +331,9 @@
             });
 
         });
+        function abrirMensajes() {
+            window.location = 'index_mensajes.html';
+        }
         function abrirCamara() {
             navigator.camera.cleanup();
             navigator.camera.getPicture(function (fileURI) {
@@ -378,13 +383,69 @@
 
             }, function (error) {
                 toastError(JSON.stringify(error));
-                //console.log(JSON.stringify(error));
+                console.log(JSON.stringify(error));
             }, {
                 quality: 20
             });
         }
         function abrirGaleria() {
+            //navigator.camera.cleanup();
+            navigator.camera.getPicture(function (fileURI) {
 
+            //Tomar descripción de la imagen
+            swal({
+                title: "Descripción",
+                text: "",
+                type: "input",
+                showCancelButton: true,
+                cancelButtonText: 'Cancelar',
+                confirmButtonText: 'Subir',
+                closeOnConfirm: true,
+                animation: "slide-from-top",
+                inputPlaceholder: "Ingrese una descripción"
+                },
+                function(inputValue){
+                if (inputValue === false) return false;
+
+                if (inputValue === "") {
+                    swal.showInputError("Descripción obligatoria");
+                    return false
+                }
+
+                toastSuccess("Procesando...");
+                /////////////OPCIONES DE TRANSFERENCIA AL SERVIDOR//////////////
+                var options = new FileUploadOptions();
+                options.fileKey = "image";
+                options.fileName = fileURI.substr(fileURI.lastIndexOf('/') + 1);
+                options.mimeType = "image/png";
+                var params = new Object();
+                params.api_token = window.localStorage.getItem('api_token');
+                params.service_id = window.localStorage.getItem('service_id');
+                params.description = inputValue;
+                options.params = params;
+                var ft = new FileTransfer();
+                ft.upload(fileURI, encodeURI(ruta + "upload_evidence"),
+                    function (data) {
+                        console.log("INFO DEL SERVER: " + JSON.stringify(data));
+                        toastSuccess("Foto guardada");
+                    },
+                    function (error) {
+                        toastError(JSON.stringify(error));
+                        console.log(JSON.stringify(error));
+                    }, options);
+            });
+
+            }, function (error) {
+                toastError(JSON.stringify(error));
+                console.log(JSON.stringify(error));
+            }, {
+                quality: 20,
+                sourceType : 2
+            });
+        }
+        function verEvidencias()
+        {
+            window.location = 'index_evidencia.html';
         }
         function firmar() {
             if (firm == null) {
