@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content=" media-src *">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+    <meta name="color-scheme" content="light dark">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/alert_firma.css">
+    <link rel="stylesheet" href="css/font.css">
+    <link rel="stylesheet" href="css/index.css">
+    <title>iniciar_servicio</title>
+</head>
+
+<body>
+    <!--Loading -->
+    <div id="loading">
+        <div id="content_loading">
+            <center>
+                &nbsp;&nbsp;&nbsp;
+                <img src="img/logo.png" width="60" height="60">
+                <br>
+                <img src="img/loading.gif" width="60" height="60">
+                <br>
+                <label class="font-weight-bold" style="color:#2E86C1;">Espere...</label>
+            </center>
+        </div>
+    </div>
+    <!--End Loading-->
+    <!--NAVBAR-->
+    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index_service.html">
+                <label for=""><span style="color:orange;"><i>V</i></span><span
+                        style="color:green;"><i>P</i></span></label> Mobile
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+
+                </ul>
+
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <a id="menu_nombre_usuario" class="nav-link dropdown-toggle" href="#" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <!--Se carga el nombre del usuario logeado-->
+                            <span class="caret"></span>
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <span class="dropdown-item" onclick="cerrarSesion();">
+                                Cerrar sesión
+                            </span>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br><br><br>
+    <!--END NAVBAR-->
+    <div class="container" id="contenedor">
+        <form id="form_iniciar_servicio" action="#" class="form">
+            <div class="card">
+                <div class="card-header">
+                    Iniciar servicio
+                </div> 
+                <div class="card-body">
+                    <br>
+                    Está a punto de iniciar este servicio ¿Desea agregar un comentario?
+                    <br><br>
+                    <div class="form-group">
+                        <input id="txt_comment" type="text" class="form-control" placeholder="Escriba aquí (Opcional)...">
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <input type="submit" class="btn btn-primary btn-block" value="Iniciar">
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="cordova.js"></script>
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/sweetalert.js"></script>
+    <script src="js/index.js"></script>
+    <script>
+        $(document).ready(function () {
+            loadingOn();
+            $("#form_iniciar_servicio").submit(function(e){
+                e.preventDefault();
+                $.ajax({
+                        type: "POST",
+                        url: ruta + 'iniciar_servicio',
+                        data: {
+                            api_token: window.localStorage.getItem('api_token'),
+                            service_id: window.localStorage.getItem('service_id'),
+                            comment: $("#txt_comment").val()
+                        },
+                        success: function (data) {
+                            console.log(data);
+                            if(data.error <= 0)
+                            {
+                                toastSuccess(data.msg);
+                                window.history.back();
+                            }else{
+                                toastError(data.msg);
+                            }
+                        },
+                        error: function (e) {
+                            console.log("error: " + JSON.stringify(e));
+                        }
+                    });
+            });
+            loadingOff();
+        });
+    </script>
+</body>

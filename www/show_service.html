@@ -48,115 +48,6 @@
                 </ul>
 
                 <ul class="navbar-nav ml-auto">
-                    <!--   
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link" href="#" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-
-                            <span style="color:red">{{ $contador_pendientes }}</span>
-
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-
-                            <a class="dropdown-item">
-                                No hay servicios pendientes
-                            </a>
-
-                            <a class="dropdown-item" href="{{ route('show_service',$pendiente->id) }}">
-                                <label class="font-weight-bold">{{ $pendiente->customer['name'] }} - {{ $pendiente->service_report }}</label>
-                                <br>
-                                {{ $pendiente->usuario_Final['name'] }} {{ $pendiente->usuario_Final['last_name1'] }} {{ $pendiente->usuario_Final['last_name2'] }}
-                                <br>
-                                <span style="color:#2E86C1;">{{ date_format(new \DateTime($pendiente->schedule), 'd-m-Y g:i A') }}</span>
-                            </a>
-
-                            <a class="dropdown-item" href="{{ route('index_pendiente') }}">
-                                <center style="color:#2E86C1;">Mostrar todos los pendientes</center>
-                            </a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link" href="#" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            <input type="hidden" id="ruta_cargar_mensajes_push" value="{{ route('cargar_mensajes_push') }}">
-
-                            <span id="span_num_bubble" style="color:red;" >{{ $contador_mensajes }}</span>
-
-                        </a>
-                        <input type="hidden" id="txt_img_loading" value="{{ asset('img/loading.gif') }}">
-                        <div id="div_items_mensajes" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-
-                            <a style="background-color:#85C1E9;" class="dropdown-item" href="{{ route('open_message',[$mensaje->id,$mensaje->service_id]) }}">
-                                <span class="icon {{$mensaje->icon}}" style="color:{{$mensaje->color}}"></span>
-                                <label class="font-weight-bold">{{$mensaje->emisor['name']}} {{$mensaje->emisor['last_name1']}}</label> {!! $mensaje->mensaje !!}
-                                <br>
-                                <span class="float-right" style="color:white;">{{ date_format(new \DateTime($mensaje->created_at), 'd-m-Y g:i A') }}</span>
-                                <br>
-                            </a>
-
-                            <a class="dropdown-item" href="{{ route('open_message',[$mensaje->id,$mensaje->service_id]) }}">
-                                <span class="icon {{$mensaje->icon}}" style="color:{{$mensaje->color}}"></span>
-                                <label class="font-weight-bold">{{$mensaje->emisor['name']}} {{$mensaje->emisor['last_name1']}}</label> {!! $mensaje->mensaje !!}
-                                <br>
-                                <span class="float-right" style="color:#2E86C1;">{{ date_format(new \DateTime($mensaje->created_at), 'd-m-Y g:i A') }}</span>
-                                <br>
-                            </a>
-
-                            <a class="dropdown-item" href="{{ route('index_mensajes') }}">
-                                <center style="color:#2E86C1;">Ver todos los mensajes</center>
-                            </a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            Servicios
-                            <span class="caret"></span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('index_service') }}">
-                                Lista de servicios
-                            </a>
-
-                            <a class="dropdown-item" href="{{ route('create_service') }}">
-                                Nuevo servicio
-                            </a>
-
-                        </div>
-                    </li>
-
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            Usuarios
-                            <span class="caret"></span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('index_user') }}">
-                                Lista de usuarios
-                            </a>
-                            <a class="dropdown-item" href="{{ route('create_user') }}">
-                                Nuevo usario
-                            </a>
-                        </div>
-                    </li>
-
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            Clientes
-                            <span class="caret"></span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('index_customer') }}">
-                                Lista de clientes
-                            </a>
-                            <a class="dropdown-item" href="{{ route('create_customer') }}">
-                                Nuevo cliente
-                            </a>
-                        </div>
-                    </li>
-                -->
                     <li class="nav-item dropdown">
                         <a id="menu_nombre_usuario" class="nav-link dropdown-toggle" href="#" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -180,24 +71,22 @@
     <div class="container" id="contenedor">
         <div class="card">
             <div class="card-header">
+                <label class="font-weight-bold">Reporte: </label> <span id="span_service_report">-</span>
+            </div>
+            <div class="card-body">
                 <table style="width:100%;">
                     <tr>
-                        <td width="33%">
-                            <button class="btn btn-secondary btn-block" style="color:white;"><span
-                                    class="icon-share"></span> Status servicio</button>
+                        <td width="33%" id="td_estatus">
+                            <!--BTN cambio de estatus-->
                         </td>
-                        <td width="33%">
-                            <button class="btn btn-warning btn-block" style="color:white;"><span
-                                    class="icon-clock"></span> Reagendar servicio</button>
+                        <td width="33%" id="td_reagendar">
+                            <!--BTN reagendar-->
                         </td>
-                        <td width="33%">
-                            <button class="btn btn-danger btn-block" style="color:white;"><span class="icon-bin"></span>
-                                Cancelar servicio</button>
+                        <td width="33%" id="td_cancelar">
+                            <!--BTN cancelar-->
                         </td>
                     </tr>
                 </table>
-            </div>
-            <div class="card-body">
                 <label class="font-weight-bold">Estatus: </label><br><span id="span_status_service">-</span>
                 <br>
                 <label class="font-weight-bold">Cliente/Razón social: </label><br><span id="span_customer_name">-</span>
@@ -238,16 +127,16 @@
     <div class="footer">
         <table style="width:100%;">
             <tr>
-                <td onclick="abrirMensajes()" width="25%"><span class="icon icon-bubble"
-                        style="font-size:22px;"></span></td>
+                <td onclick="abrirMensajes()" width="25%"><span class="icon icon-bubble" style="font-size:22px;"></span>
+                </td>
                 <td onclick="abrirCamara()" width="25%"><span class="icon icon-camera" style="font-size:22px;"></span>
                 </td>
                 <!--
                 <td onclick="abrirGaleria();" width="20%"><span class="icon icon-upload" style="font-size:22px;"></span>
                 </td>
                 -->
-                <td onclick="verEvidencias()" width="25%"><span class="icon icon-image"
-                        style="font-size:22px;"></span></td>
+                <td onclick="verEvidencias()" width="25%"><span class="icon icon-image" style="font-size:22px;"></span>
+                </td>
                 <td onclick="firmar();" width="25%"><span id="span_final_user_firm" class="icon icon-pen"
                         style="font-size:22px;"></span></td>
             </tr>
@@ -262,6 +151,7 @@
     <script src="js/index.js"></script>
     <script>
         var firm;
+        var currentStatus;
         $(document).ready(function () {
             loadingOn();
             $.ajax({
@@ -273,11 +163,34 @@
                 },
                 success: function (data) {
                     //console.log(JSON.stringify(data));
+                    currentStatus = data.status_service_id;
                     if (parseInt(data.status_service_id) >= 6) {
                         $("#span_status_service").text('Finalizado');
                     } else {
                         $("#span_status_service").text(data.status.status_service);
                     }
+                    switch (parseInt(data.status_service_id)) {
+                        case 1:
+                            $("#td_estatus").html('<a href="iniciar_servicio.html" class="btn btn-secondary btn-block" style="color:white;"><span class="icon-share"></span> Iniciar servicio</a>');
+                            $("#td_reagendar").html('<a href="reagendar_servicio.html" class="btn btn-warning btn-block" style="color:white;"><span class="icon-clock"></span> Reagendar servicio</a>');
+                            $("#td_cancelar").html('<a href="cancelar_servicio.html" class="btn btn-danger btn-block" style="color:white;"><span class="icon-bin"></span> Cancelar servicio</a>');
+                            break;
+                        case 2:
+                            $("#td_estatus").html('<button onclick="finalizarServicio();" class="btn btn-primary btn-block" style="color:white;"><span class="icon-checkmark"></span> Finalizar servicio</button>');
+                            $("#td_reagendar").html('<a href="reagendar_servicio.html" class="btn btn-warning btn-block" style="color:white;"><span class="icon-clock"></span> Reagendar servicio</a>');
+                            $("#td_cancelar").html('<a href="cancelar_servicio.html" class="btn btn-danger btn-block" style="color:white;"><span class="icon-bin"></span> Cancelar servicio</a>');
+                            break;
+                        case 3:
+                            $("#td_estatus").html('<button class="btn btn-success btn-block" style="color:white;" disabled><span class="icon-checkmark" ></span> Servicio Finalizado</button>');
+                            break;
+                        case 5:
+                            $("#td_estatus").html('<button class="btn btn-danger btn-block" style="color:white;" disabled><span class="icon-cross" ></span> Servicio Cancelado</button>');
+                            break;
+                        default:
+                            $("#td_estatus").html('<button class="btn btn-success btn-block" style="color:white;" disabled><span class="icon-checkmark" ></span> Servicio Finalizado</button>');
+                            break;
+                    }
+                    $("#span_service_report").text(data.service_report);
                     $("#span_customer_name").text(data.customer.name);
                     $("#span_final_user").text(data.usuario__final.name + ' ' + data.usuario__final.last_name1 + ' ' + data.usuario__final.last_name2);
                     $("#span_service_type").text(data.service_type.service_type);
@@ -335,151 +248,178 @@
             window.location = 'index_mensajes.html';
         }
         function abrirCamara() {
-            navigator.camera.cleanup();
-            navigator.camera.getPicture(function (fileURI) {
 
-            //Tomar descripción de la imagen
-            swal({
-                title: "Descripción",
-                text: "",
-                type: "input",
-                showCancelButton: true,
-                cancelButtonText: 'Cancelar',
-                confirmButtonText: 'Subir',
-                closeOnConfirm: true,
-                animation: "slide-from-top",
-                inputPlaceholder: "Ingrese una descripción"
-                },
-                function(inputValue){
-                if (inputValue === false) return false;
+            if (currentStatus < 3) {
 
-                if (inputValue === "") {
-                    swal.showInputError("Descripción obligatoria");
-                    return false
-                }
+                navigator.camera.cleanup();
+                navigator.camera.getPicture(function (fileURI) {
 
-                toastSuccess("Procesando...");
-                /////////////OPCIONES DE TRANSFERENCIA AL SERVIDOR//////////////
-                var options = new FileUploadOptions();
-                options.fileKey = "imagen";
-                options.fileName = fileURI.substr(fileURI.lastIndexOf('/') + 1);
-                options.mimeType = "image/jpeg";
-                var params = new Object();
-                params.api_token = window.localStorage.getItem('api_token');
-                params.service_id = window.localStorage.getItem('service_id');
-                params.description = inputValue;
-                options.params = params;
-                var ft = new FileTransfer();
-                ft.upload(fileURI, encodeURI(ruta + "store_evidence"),
-                    function (data) {
-                        //console.log("INFO DEL SERVER: " + JSON.stringify(data));
-                        toastSuccess("Foto guardada");
+                    //Tomar descripción de la imagen
+                    swal({
+                        title: "Descripción",
+                        text: "",
+                        type: "input",
+                        showCancelButton: true,
+                        cancelButtonText: 'Cancelar',
+                        confirmButtonText: 'Subir',
+                        closeOnConfirm: true,
+                        animation: "slide-from-top",
+                        inputPlaceholder: "Ingrese una descripción"
                     },
-                    function (error) {
-                        toastError(JSON.stringify(error));
-                        //console.log(JSON.stringify(error));
-                    }, options);
-            });
+                        function (inputValue) {
+                            if (inputValue === false) return false;
 
-            }, function (error) {
-                toastError(JSON.stringify(error));
-                console.log(JSON.stringify(error));
-            }, {
-                quality: 20
-            });
+                            if (inputValue === "") {
+                                swal.showInputError("Descripción obligatoria");
+                                return false
+                            }
+
+                            toastSuccess("Procesando...");
+                            /////////////OPCIONES DE TRANSFERENCIA AL SERVIDOR//////////////
+                            var options = new FileUploadOptions();
+                            options.fileKey = "imagen";
+                            options.fileName = fileURI.substr(fileURI.lastIndexOf('/') + 1);
+                            options.mimeType = "image/jpeg";
+                            var params = new Object();
+                            params.api_token = window.localStorage.getItem('api_token');
+                            params.service_id = window.localStorage.getItem('service_id');
+                            params.description = inputValue;
+                            options.params = params;
+                            var ft = new FileTransfer();
+                            ft.upload(fileURI, encodeURI(ruta + "store_evidence"),
+                                function (data) {
+                                    //console.log("INFO DEL SERVER: " + JSON.stringify(data));
+                                    toastSuccess("Foto guardada");
+                                },
+                                function (error) {
+                                    toastError(JSON.stringify(error));
+                                    //console.log(JSON.stringify(error));
+                                }, options);
+                        });
+
+                }, function (error) {
+                    toastError(JSON.stringify(error));
+                    console.log(JSON.stringify(error));
+                }, {
+                    quality: 20
+                });
+
+            } else { toastError("Esta opción ya no está disponible en el estatus actual.") }
         }
         function abrirGaleria() {
             //navigator.camera.cleanup();
             navigator.camera.getPicture(function (fileURI) {
 
-            //Tomar descripción de la imagen
-            swal({
-                title: "Descripción",
-                text: "",
-                type: "input",
-                showCancelButton: true,
-                cancelButtonText: 'Cancelar',
-                confirmButtonText: 'Subir',
-                closeOnConfirm: true,
-                animation: "slide-from-top",
-                inputPlaceholder: "Ingrese una descripción"
+                //Tomar descripción de la imagen
+                swal({
+                    title: "Descripción",
+                    text: "",
+                    type: "input",
+                    showCancelButton: true,
+                    cancelButtonText: 'Cancelar',
+                    confirmButtonText: 'Subir',
+                    closeOnConfirm: true,
+                    animation: "slide-from-top",
+                    inputPlaceholder: "Ingrese una descripción"
                 },
-                function(inputValue){
-                if (inputValue === false) return false;
+                    function (inputValue) {
+                        if (inputValue === false) return false;
 
-                if (inputValue === "") {
-                    swal.showInputError("Descripción obligatoria");
-                    return false
-                }
+                        if (inputValue === "") {
+                            swal.showInputError("Descripción obligatoria");
+                            return false
+                        }
 
-                toastSuccess("Procesando...");
-                /////////////OPCIONES DE TRANSFERENCIA AL SERVIDOR//////////////
-                var options = new FileUploadOptions();
-                options.fileKey = "image";
-                options.fileName = fileURI.substr(fileURI.lastIndexOf('/') + 1);
-                options.mimeType = "image/png";
-                var params = new Object();
-                params.api_token = window.localStorage.getItem('api_token');
-                params.service_id = window.localStorage.getItem('service_id');
-                params.description = inputValue;
-                options.params = params;
-                var ft = new FileTransfer();
-                ft.upload(fileURI, encodeURI(ruta + "upload_evidence"),
-                    function (data) {
-                        console.log("INFO DEL SERVER: " + JSON.stringify(data));
-                        toastSuccess("Foto guardada");
-                    },
-                    function (error) {
-                        toastError(JSON.stringify(error));
-                        console.log(JSON.stringify(error));
-                    }, options);
-            });
+                        toastSuccess("Procesando...");
+                        /////////////OPCIONES DE TRANSFERENCIA AL SERVIDOR//////////////
+                        var options = new FileUploadOptions();
+                        options.fileKey = "image";
+                        options.fileName = fileURI.substr(fileURI.lastIndexOf('/') + 1);
+                        options.mimeType = "image/png";
+                        var params = new Object();
+                        params.api_token = window.localStorage.getItem('api_token');
+                        params.service_id = window.localStorage.getItem('service_id');
+                        params.description = inputValue;
+                        options.params = params;
+                        var ft = new FileTransfer();
+                        ft.upload(fileURI, encodeURI(ruta + "upload_evidence"),
+                            function (data) {
+                                console.log("INFO DEL SERVER: " + JSON.stringify(data));
+                                toastSuccess("Foto guardada");
+                            },
+                            function (error) {
+                                toastError(JSON.stringify(error));
+                                console.log(JSON.stringify(error));
+                            }, options);
+                    });
 
             }, function (error) {
                 toastError(JSON.stringify(error));
                 console.log(JSON.stringify(error));
             }, {
                 quality: 20,
-                sourceType : 2
+                sourceType: 2
             });
         }
-        function verEvidencias()
-        {
+        function verEvidencias() {
             window.location = 'index_evidencia.html';
         }
         function firmar() {
-            if (firm == null) {
-                window.location = 'create_firma.html';
-            } else {
+            if (currentStatus < 3) {
+                if (firm == null) {
+                    window.location = 'create_firma.html';
+                } else {
 
-                $.ajax({
-                    url: ruta + 'show_firma',
-                    data:
-                    {
-                        api_token: window.localStorage.getItem('api_token'),
-                        service_id: window.localStorage.getItem('service_id')
-                    },
-                    success: function (data) {
-                        //console.log(JSON.stringify(data));
-                        swal({
-                            html: true,
-                            title: 'Aviso',
-                            text: 'Ya existe una firma guardada<br><img src="' + data + '" width="60"><br>¿Desea sobreescribirla?',
-                            confirmButtonText: 'Si',
-                            showCancelButton: true,
-                            cancelButtonText: 'No'
-                        }, function () {
-                            window.location = 'create_firma.html';
-                        });
-                        loadingOff();
-                    },
-                    error: function (e) {
-                        //console.log(e.responseText);
-                        $("body").html(e.responseText);
-                        toastError("Error al obtener los datos");
+                    $.ajax({
+                        url: ruta + 'show_firma',
+                        data:
+                        {
+                            api_token: window.localStorage.getItem('api_token'),
+                            service_id: window.localStorage.getItem('service_id')
+                        },
+                        success: function (data) {
+                            //console.log(JSON.stringify(data));
+                            swal({
+                                html: true,
+                                title: 'Aviso',
+                                text: 'Ya existe una firma guardada<br><img src="' + data + '" width="60"><br>¿Desea sobreescribirla?',
+                                confirmButtonText: 'Si',
+                                showCancelButton: true,
+                                cancelButtonText: 'No'
+                            }, function () {
+                                window.location = 'create_firma.html';
+                            });
+                            loadingOff();
+                        },
+                        error: function (e) {
+                            //console.log(e.responseText);
+                            $("body").html(e.responseText);
+                            toastError("Error al obtener los datos");
+                        }
+                    });
+                }
+            } else { toastError("Esta opción ya no está disponible en el estatus actual.") }
+        }
+        function finalizarServicio() {
+            $.ajax({
+                type: "GET",
+                url: ruta + 'validar_evidencia',
+                data: {
+                    api_token: window.localStorage.getItem('api_token'),
+                    service_id: window.localStorage.getItem('service_id')
+                },
+                success: function (data) {
+                    console.log(data);
+                    if (data.evidencia > 0 && data.firma > 0) {
+                        window.location = 'finalizar_servicio.html';
+                    } else {
+                        toastError("Antes de finalizar debe agregar firmas y evidencias.");
                     }
-                });
-            }
+                },
+                error: function (e) {
+                    console.log("error: " + JSON.stringify(e));
+                }
+            });
         }
     </script>
     <style>
