@@ -63,7 +63,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a onclick="verReemplazos()" class="nav-link" href="#">
                             <span class="icon icon-drive"> </span>
                             Reemplazos
                         </a>
@@ -427,6 +427,10 @@
         }
         function verEvidencias() {
             window.location = 'index_evidencia.html';
+        }
+        function verReemplazos()
+        {
+            window.location = 'index_reemplazo.html';
         }
         function firmarUsuarioFinal() {
             if (currentStatus < 3) {

@@ -199,23 +199,23 @@
                     //console.log(JSON.stringify(data));
                     var html = '';
                     var count = 0;
-                    data.forEach(function (item, index){
-                      count ++;
-                      html += '<div class="card">'+
-                                '<div class="card-header">'+
-                                    item.date+
-                                '</div>'+
-                                '<div class="card-body">'+
-                                    '<img src="'+item.src+'" width="100%" height="auto"/>'+
-                                '</div>'+
-                                '<div class="card-footer">'+
-                                    item.description+
-                                '</div>'+
-                            '</div><br>';  
+                    data.forEach(function (item, index) {
+                        count++;
+                        html += '<div class="card">' +
+                            '<div class="card-header">' +
+                            item.date +
+                            '</div>' +
+                            '<div class="card-body">' +
+                            '<img src="' + item.src + '" width="100%" height="auto"/>' +
+                            '</div>' +
+                            '<div class="card-footer">' +
+                            item.description +
+                            '</div>' +
+                            '</div><br>';
                     });
-                    
+
                     $("#contenedor").html(html);
-                    if(count <= 0){ $("#contenedor").html('<center>No ha elementos que mostrar</center>'); }
+                    if (count <= 0) { $("#contenedor").html('<center>No hay elementos que mostrar</center>'); }
                     loadingOff();
                 },
                 error: function (e) {
