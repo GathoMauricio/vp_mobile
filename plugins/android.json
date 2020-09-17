@@ -36,6 +36,11 @@
     },
     "cordova-plugin-file-transfer": {
       "PACKAGE_NAME": "com.victoriaproject.vpmobile"
+    },
+    "cordova-plugin-admobpro": {
+      "ADMOB_APP_ID": "ca-app-pub-4747161271433972~8654491897",
+      "PLAY_SERVICES_VERSION": "16.0.0",
+      "PACKAGE_NAME": "com.victoriaproject.vpmobile"
     }
   },
   "dependent_plugins": {
@@ -46,6 +51,9 @@
       "PACKAGE_NAME": "com.victoriaproject.vpmobile"
     },
     "cordova-plugin-file": {
+      "PACKAGE_NAME": "com.victoriaproject.vpmobile"
+    },
+    "cordova-plugin-extension": {
       "PACKAGE_NAME": "com.victoriaproject.vpmobile"
     }
   }

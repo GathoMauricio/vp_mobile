@@ -35,6 +35,10 @@
             {
               "xml": "<feature name=\"FileTransfer\"><param name=\"android-package\" value=\"org.apache.cordova.filetransfer.FileTransfer\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"AdMob\"><param name=\"android-package\" value=\"com.rjfun.cordova.admob.AdMobPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+              "count": 1
             }
           ],
           "/widget": []
@@ -64,11 +68,11 @@
           "/*": [
             {
               "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
-              "count": 1
+              "count": 2
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
-              "count": 1
+              "count": 2
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.WAKE_LOCK\" />",
@@ -117,7 +121,17 @@
               "count": 1
             }
           ],
-          "/manifest": []
+          "/manifest": [],
+          "/manifest/application": [
+            {
+              "xml": "<activity android:configChanges=\"keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize\" android:name=\"com.google.android.gms.ads.AdActivity\" android:theme=\"@android:style/Theme.Translucent\" />",
+              "count": 1
+            },
+            {
+              "xml": "<meta-data android:name=\"com.google.android.gms.ads.APPLICATION_ID\" android:value=\"ca-app-pub-4747161271433972~8654491897\" />",
+              "count": 1
+            }
+          ]
         }
       }
     }
@@ -160,6 +174,14 @@
       "PACKAGE_NAME": "com.victoriaproject.vpmobile"
     },
     "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "com.victoriaproject.vpmobile"
+    },
+    "cordova-plugin-extension": {
+      "PACKAGE_NAME": "com.victoriaproject.vpmobile"
+    },
+    "cordova-plugin-admobpro": {
+      "ADMOB_APP_ID": "ca-app-pub-4747161271433972~8654491897",
+      "PLAY_SERVICES_VERSION": "16.0.0",
       "PACKAGE_NAME": "com.victoriaproject.vpmobile"
     }
   },
@@ -401,6 +423,14 @@
       "clobbers": [
         "window.FileTransfer"
       ]
+    },
+    {
+      "id": "cordova-plugin-admobpro.AdMob",
+      "file": "plugins/cordova-plugin-admobpro/www/AdMob.js",
+      "pluginId": "cordova-plugin-admobpro",
+      "clobbers": [
+        "window.AdMob"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -411,6 +441,8 @@
     "cordova-plugin-firebasex": "10.2.0-cli",
     "cordova-plugin-camera": "4.1.0",
     "cordova-plugin-file": "6.0.2",
-    "cordova-plugin-file-transfer": "1.7.1"
+    "cordova-plugin-file-transfer": "1.7.1",
+    "cordova-plugin-extension": "1.5.4",
+    "cordova-plugin-admobpro": "2.49.0"
   }
 }

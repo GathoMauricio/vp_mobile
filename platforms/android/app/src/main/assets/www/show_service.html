@@ -43,8 +43,49 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-
+                <ul class="navbar-nav">
+                    <li onclick="abrirMensajes()"  class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span class="icon icon-bubble"> </span>
+                            Comentarios
+                        </a>
+                    </li>
+                    <li onclick="abrirCamara()" class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span class="icon icon-camera"> </span>
+                            Camara
+                        </a>
+                    </li>
+                    <li onclick="verEvidencias()" class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span class="icon icon-image"> </span>
+                            Evidencias
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span class="icon icon-drive"> </span>
+                            Reemplazos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span class="icon icon-display"> </span>
+                            Retiros
+                        </a>
+                    </li>
+                    <li onclick="firmarEncargado()" class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span class="icon icon-pen"> </span>
+                            Firma del encargado
+                        </a>
+                    </li>
+                    <li onclick="firmarUsuarioFinal()" class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span class="icon icon-pen"> </span>
+                            Firma del usuario final
+                        </a>
+                    </li>
                 </ul>
 
                 <ul class="navbar-nav ml-auto">
@@ -116,32 +157,36 @@
                 <br>
                 <label class="font-weight-bold">Observaciones: </label><br><span id="span_observations">-</span>
                 <br>
-                <label class="font-weight-bold">Firma: </label><br>
+                <label class="font-weight-bold">Firma usuario final: </label><br>
                 <div id="div_firma_final_user" style="width:100%;"></div>
+                <br>
+                <label class="font-weight-bold">Firma encargado: </label><br>
+                <div id="div_firma_encargado" style="width:100%;"></div>
                 <br><br><br><br>
             </div>
         </div>
     </div>
 
     <!--FOOTER-->
-    <div class="footer">
-        <table style="width:100%;">
-            <tr>
-                <td onclick="abrirMensajes()" width="25%"><span class="icon icon-bubble" style="font-size:22px;"></span>
-                </td>
-                <td onclick="abrirCamara()" width="25%"><span class="icon icon-camera" style="font-size:22px;"></span>
-                </td>
-                <!--
-                <td onclick="abrirGaleria();" width="20%"><span class="icon icon-upload" style="font-size:22px;"></span>
-                </td>
-                -->
-                <td onclick="verEvidencias()" width="25%"><span class="icon icon-image" style="font-size:22px;"></span>
-                </td>
-                <td onclick="firmar();" width="25%"><span id="span_final_user_firm" class="icon icon-pen"
-                        style="font-size:22px;"></span></td>
-            </tr>
-        </table>
-    </div>
+<!--
+ <div class="footer">
+    <table style="width:100%;">
+        <tr>
+            <td onclick="abrirMensajes()" width="25%"><span class="icon icon-bubble" style="font-size:22px;"></span>
+            </td>
+            <td onclick="abrirCamara()" width="25%"><span class="icon icon-camera" style="font-size:22px;"></span>
+            </td>
+            <td onclick="abrirGaleria();" width="20%"><span class="icon icon-upload" style="font-size:22px;"></span>
+            </td>
+            <td onclick="verEvidencias()" width="25%"><span class="icon icon-image" style="font-size:22px;"></span>
+            </td>
+            <td onclick="firmar();" width="25%"><span id="span_final_user_firm" class="icon icon-pen"
+                        style="font-size:22px;"></span>
+            </td>
+        </tr>
+    </table>
+ </div>
+-->
     <!--END FOOTER-->
 
     <script src="cordova.js"></script>
@@ -151,6 +196,7 @@
     <script src="js/index.js"></script>
     <script>
         var firm;
+        var firm2;
         var currentStatus;
         $(document).ready(function () {
             loadingOn();
@@ -204,11 +250,7 @@
                     $("#span_solution").text(data.solution);
                     $("#span_observations").text(data.observations);
                     firm = data.firm;
-                    if (data.firm == null) {
-                        $("#span_final_user_firm").css('color', 'white');
-                    } else {
-                        $("#span_final_user_firm").css('color', 'yellow');
-                    }
+                    firm2 = data.firm2;
                     //contador evidencias
                     //contador comentarios
                     loadingOff();
@@ -234,6 +276,28 @@
                         $("#div_firma_final_user").html("<img src='" + data + "' width='100%' height='200'>");
                     } else {
                         $("#div_firma_final_user").html("<center>No disponible aún.</center>");
+                    }
+                },
+                error: function (e) {
+                    //console.log(e.responseText);
+                    $("body").html(e.responseText);
+                    toastError("Error al obtener los datos");
+                }
+            });
+
+            $.ajax({
+                url: ruta + 'show_firma2',
+                data:
+                {
+                    api_token: window.localStorage.getItem('api_token'),
+                    service_id: window.localStorage.getItem('service_id')
+                },
+                success: function (data) {
+                    //console.log(JSON.stringify(data.slice(-1)));
+                    if (data.slice(-1) != '/') {
+                        $("#div_firma_encargado").html("<img src='" + data + "' width='100%' height='200'>");
+                    } else {
+                        $("#div_firma_encargado").html("<center>No disponible aún.</center>");
                     }
                 },
                 error: function (e) {
@@ -364,7 +428,7 @@
         function verEvidencias() {
             window.location = 'index_evidencia.html';
         }
-        function firmar() {
+        function firmarUsuarioFinal() {
             if (currentStatus < 3) {
                 if (firm == null) {
                     window.location = 'create_firma.html';
@@ -400,6 +464,42 @@
                 }
             } else { toastError("Esta opción ya no está disponible en el estatus actual.") }
         }
+        function firmarEncargado() {{
+            if (currentStatus < 3) {
+                if (firm2 == null) {
+                    window.location = 'create_firma2.html';
+                } else {
+
+                    $.ajax({
+                        url: ruta + 'show_firma2',
+                        data:
+                        {
+                            api_token: window.localStorage.getItem('api_token'),
+                            service_id: window.localStorage.getItem('service_id')
+                        },
+                        success: function (data) {
+                            //console.log(JSON.stringify(data));
+                            swal({
+                                html: true,
+                                title: 'Aviso',
+                                text: 'Ya existe una firma guardada<br><img src="' + data + '" width="60"><br>¿Desea sobreescribirla?',
+                                confirmButtonText: 'Si',
+                                showCancelButton: true,
+                                cancelButtonText: 'No'
+                            }, function () {
+                                window.location = 'create_firma2.html';
+                            });
+                            loadingOff();
+                        },
+                        error: function (e) {
+                            //console.log(e.responseText);
+                            $("body").html(e.responseText);
+                            toastError("Error al obtener los datos");
+                        }
+                    });
+                }
+            } else { toastError("Esta opción ya no está disponible en el estatus actual.") }
+        }}
         function finalizarServicio() {
             $.ajax({
                 type: "GET",
