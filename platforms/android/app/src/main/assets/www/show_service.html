@@ -62,16 +62,16 @@
                             Evidencias
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a onclick="verReemplazos()" class="nav-link" href="#">
+                    <li onclick="verReemplazos()" class="nav-item">
+                        <a class="nav-link" href="#">
                             <span class="icon icon-drive"> </span>
                             Reemplazos
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li onclick="verRetiros()" class="nav-item">
                         <a class="nav-link" href="#">
                             <span class="icon icon-display"> </span>
-                            Retiros
+                            Retiro equipo
                         </a>
                     </li>
                     <li onclick="firmarEncargado()" class="nav-item">
@@ -427,6 +427,10 @@
         }
         function verEvidencias() {
             window.location = 'index_evidencia.html';
+        }
+        function verRetiros()
+        {
+            window.location = 'index_retiro.html';
         }
         function verReemplazos()
         {
