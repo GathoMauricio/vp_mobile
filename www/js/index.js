@@ -1,6 +1,6 @@
-var ruta = "http://8edba3ffc6dd.ngrok.io/api/";
+//var ruta = "http://8edba3ffc6dd.ngrok.io/api/";
 //ruta = "http://localhost/vp/public/api/";
-//var ruta = "http://victoriapro.mx/api/";
+var ruta = "http://victoriapro.mx/api/";
 $(document).ready(function () {
   if (document.title != "login") {
     $.ajax({
