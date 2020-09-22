@@ -34,8 +34,7 @@
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-top">
         <div class="container">
             <a class="navbar-brand" href="index_service.html">
-                <label for=""><span style="color:orange;"><i>V</i></span><span
-                        style="color:green;"><i>P</i></span></label> Mobile
+                <img src="img/completo.png" width="80" height="42">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -84,6 +83,12 @@
                         <a class="nav-link" href="#">
                             <span class="icon icon-pen"> </span>
                             Firma del usuario final
+                        </a>
+                    </li>
+                    <li onclick="calificarServicio()" class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span class="icon icon-star-full"> </span>
+                            Calificación del servicio
                         </a>
                     </li>
                 </ul>
@@ -430,13 +435,16 @@
         }
         function verRetiros()
         {
+            if(currentStatus == 1){ return toastError("Opción no disponible hasta iniciar el servicio."); }
             window.location = 'index_retiro.html';
         }
         function verReemplazos()
         {
+            if(currentStatus == 1){ return toastError("Opción no disponible hasta iniciar el servicio."); }
             window.location = 'index_reemplazo.html';
         }
         function firmarUsuarioFinal() {
+            if(currentStatus == 1){ return toastError("Opción no disponible hasta iniciar el servicio."); }
             if (currentStatus < 3) {
                 if (firm == null) {
                     window.location = 'create_firma.html';
@@ -473,6 +481,7 @@
             } else { toastError("Esta opción ya no está disponible en el estatus actual.") }
         }
         function firmarEncargado() {{
+            if(currentStatus == 1){ return toastError("Opción no disponible hasta iniciar el servicio."); }
             if (currentStatus < 3) {
                 if (firm2 == null) {
                     window.location = 'create_firma2.html';
@@ -508,6 +517,10 @@
                 }
             } else { toastError("Esta opción ya no está disponible en el estatus actual.") }
         }}
+        function calificarServicio(){
+            if(currentStatus == 1){ return toastError("Opción no disponible hasta iniciar el servicio."); }
+            window.location = 'rate_service.html';
+        }
         function finalizarServicio() {
             $.ajax({
                 type: "GET",

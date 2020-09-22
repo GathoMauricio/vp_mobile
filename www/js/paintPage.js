@@ -24,7 +24,7 @@ RocknCoder.Pages = RocknCoder.Pages || {};
 			setContext = function () {
 				ctx = canvas.getContext('2d');
 				lineStyle = {
-					strokeStyle: "#17202A",
+					strokeStyle: "#17202A",//Color de la firma
 					lineWidth: 2,
 					lineCap: "round"
 				};
