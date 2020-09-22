@@ -1,6 +1,8 @@
-//var ruta = "http://eeb2e27a62f3.ngrok.io/api/";
+//var ruta = "http://dcecea41309f.ngrok.io/api/";
 //ruta = "http://localhost/vp/public/api/";
 var ruta = "http://victoriapro.mx/api/";
+
+var myfirm = "";
 $(document).ready(function () {
   if (document.title != "login") {
     $.ajax({
@@ -10,6 +12,7 @@ $(document).ready(function () {
       },
       success: function (data) {
         //console.log(JSON.stringify(data));
+        myfirm = data.firm;
         $("#menu_nombre_usuario").text(
           data.name + " " + data.last_name1 + " " + data.last_name2
         );
@@ -85,14 +88,17 @@ function onDeviceReady() {
     );
     loadingOff();
   }
-  if (! AdMob) { toastError( 'admob plugin not ready' ); return; }
-        AdMob.createBanner({
-            adId: 'ca-app-pub-4747161271433972/2994971100',
-            overlap: 'false',
-            offsetTopBar: 'true',
-            adSize: 'SMART_BANNER',
-            position: '5'
-        });
+  if (!AdMob) {
+    toastError("admob plugin not ready");
+    return;
+  }
+  AdMob.createBanner({
+    adId: "ca-app-pub-4747161271433972/2994971100",
+    overlap: "false",
+    offsetTopBar: "true",
+    adSize: "SMART_BANNER",
+    position: "5",
+  });
 }
 function loadingOn() {
   $("#loading").fadeIn();
@@ -135,4 +141,43 @@ function toastError(message) {
       verticalPadding: 16, // iOS default 12, Android default 30
     },
   });
+}
+function updateMyFirm() {
+  console.log(myfirm);
+  if (myfirm != null) {
+    $.ajax({
+      url: ruta + "show_user_firm",
+      data: {
+        api_token: window.localStorage.getItem("api_token")
+      },
+      success: function (data) {
+        console.log(JSON.stringify(data));
+        swal(
+          {
+            html: true,
+            title: "Aviso",
+            text:
+              'Ya existe una firma guardada<br><img src="' +
+              data +
+              '" width="60"><br>¿Desea sobreescribirla?',
+            confirmButtonText: "Si",
+            showCancelButton: true,
+            cancelButtonText: "No",
+          },
+          function () {
+            window.location = "update_my_firm.html";
+          }
+        );
+        loadingOff();
+      },
+      error: function (e) {
+        //console.log(e.responseText);
+        $("body").html(e.responseText);
+        toastError("Error al obtener los datos");
+      },
+    });
+    
+  } else {
+    window.location = "update_my_firm.html";
+  }
 }
